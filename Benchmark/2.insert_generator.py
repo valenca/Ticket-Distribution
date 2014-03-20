@@ -23,7 +23,6 @@ if True:
 			query+= str(t)+","
 			query+= str(t*1.2)+");"
 			f.write(query+"\n")
-	print ""
 
 if True:
 	with open('Data/validations.db','w') as f:
@@ -40,4 +39,3 @@ if True:
 			query+= str(choice(['\'trs','\'sws','\'bss'])+str(randint(1,100)))+"\',"
 			query+= str(choice(['\'tr','\'sw','\'bs'])+str(randint(1,100)))+"\')"
 			f.write(query+"\n")
-	print ""

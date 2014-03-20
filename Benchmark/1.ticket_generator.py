@@ -1,6 +1,7 @@
 import datetime
 import random
 from string import letters
+from util import bar
 
 with open('firstnames','r') as f:
 	firstnames = [line[:-1] for line in f]
@@ -26,5 +27,5 @@ with open('Data/tickets.db','w') as f:
 		f.write("".join([random.choice(letters) for i in range(250)])+"\n")
 		current_date += datetime.timedelta(seconds=random.randint(1,290))
 		num+=1
-		print num
+		bar(num,3000000)
 		if num == 3000000: break
