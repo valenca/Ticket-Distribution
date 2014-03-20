@@ -3,3 +3,5 @@
 *.gen
 *.loc
 *.db
+*.mwb
+*.bak
