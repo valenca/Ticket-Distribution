@@ -7,7 +7,7 @@ import datetime
 start_date = datetime.datetime(2010,1,1,0,0,0)
 
 if True:
-	with open('../Data/deposits.db','w') as f:
+	with open('Data/deposits.db','w') as f:
 		tot=5000000
 		for i in range(tot):
 			
@@ -26,7 +26,7 @@ if True:
 	print ""
 
 if True:
-	with open('../Data/validations.db','w') as f:
+	with open('Data/validations.db','w') as f:
 		tot=20000000
 		for i in range(tot):
 			
