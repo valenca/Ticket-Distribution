@@ -11,7 +11,7 @@ if True:
 		tot=5000000
 		for i in range(tot):
 			
-			bar(i,tot)
+			bar(i,tot,msg="deposit")
 
 			current_date = start_date + datetime.timedelta(seconds=randint(1,131200000))
 			query="INSERT INTO tms.deposits (ticket_id,date,location,trips,value) VALUES ("
@@ -23,14 +23,13 @@ if True:
 			query+= str(t)+","
 			query+= str(t*1.2)+");"
 			f.write(query+"\n")
-	print ""
 
 if True:
 	with open('Data/validations.db','w') as f:
 		tot=20000000
 		for i in range(tot):
 			
-			bar(i,tot)
+			bar(i,tot,msg="deposit")
 
 			current_date = start_date + datetime.timedelta(seconds=randint(1,131200000))
 			query="INSERT INTO tms.validations (ticket_id,date,location,transport) VALUES ("
@@ -40,4 +39,3 @@ if True:
 			query+= str(choice(['\'trs','\'sws','\'bss'])+str(randint(1,100)))+"\',"
 			query+= str(choice(['\'tr','\'sw','\'bs'])+str(randint(1,100)))+"\')"
 			f.write(query+"\n")
-	print ""
