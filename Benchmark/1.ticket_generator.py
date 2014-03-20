@@ -2,6 +2,7 @@ import datetime
 import random
 from string import letters
 from util import bar
+random.seed('sgd')
 
 with open('firstnames','r') as f:
 	firstnames = [line[:-1] for line in f]

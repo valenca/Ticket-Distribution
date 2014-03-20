@@ -1,8 +1,8 @@
-from random import randint,choice,gauss
+from random import randint,choice,gauss,seed
 from sys import stdout as out
 from util import bar
 import datetime
-
+seed('sgd')
 
 start_date = datetime.datetime(2010,1,1,0,0,0)
 
@@ -11,7 +11,7 @@ if True:
 		tot=5000000
 		for i in range(tot):
 			
-			bar(i,tot)
+			bar(i,tot,msg="deposit")
 
 			current_date = start_date + datetime.timedelta(seconds=randint(1,131200000))
 			query="INSERT INTO tms.deposits (ticket_id,date,location,trips,value) VALUES ("
@@ -29,7 +29,7 @@ if True:
 		tot=20000000
 		for i in range(tot):
 			
-			bar(i,tot)
+			bar(i,tot,msg="validation")
 
 			current_date = start_date + datetime.timedelta(seconds=randint(1,131200000))
 			query="INSERT INTO tms.validations (ticket_id,date,location,transport) VALUES ("
