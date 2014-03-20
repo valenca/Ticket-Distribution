@@ -1,0 +1,67 @@
+Related Work/Background/Estado da Arte:
+
+se nao tem parte cientifica - descrever as tecnologias (...)
+o que existe de arquitecturas de sistemas, de tecnologias, referir trabalhos relacionados (papers de outras pessoas)
+descrever as arquitecturas, como funcionam
+como se organizam, como se escalam
+
+Arquitectura do Sistema (genericamente):
+o que se vai fazer na primeira versão e a sua arquitectura 
+fzr um benchmark a base de dados criada
+
+(standalone):
+          ---
+---- <--- |Q|
+|DW|      ---
+----
+
+Q - thread a fzr queries
+    fazer uma e mais
+Ver os tempos
+
+(escalavel):
+(...)
+
+o que se vai testar e como se vai testar
+
+
+
+especifico ao 3:
+
+
+arquitecture do sistema:
+
+Tabelas:
+titulo de transporte ---< carregamentos (quanto carregou, quando, em que maquina)
+titulo de transporte ---< validação (onde foi validado (picador de bilhete), data, paragem, operador de transporte(metro,carris,...))
+validação >--- operador (?)
+representar titulos de transporte como passes (?)
+definir chaves primarias, secundárias e que tal
+
+Gerador de dados:
+como gerar os dados, como é feito
+(gerar titulo e depois os seus carregamentos e validações)
+escrever em ficheiros e depois os loads (pode ser feito com jdbc, mas fica mais lento e nao e tao bom)
+
+Como fazer o benchmark:
+Simular n pedidos simultaneos com varias threads, de cada um dos 3 tipos (vendas, validações e carregamentos)
+objectivo final é calculo de repartição de receitas:
+outra thread a efectuar (poder nao fzr as 1ªs 3 threads e só esta)
+
+escalavel:
+usar 4 maquinas (cada uma com as tabelas, mysql cluster ou hive) (mysql cluster mais rapido e preferencial) (pode-se comparar os dois) (alunos de inv. vao fzr tutoriais e o stor vai coloca-los)
+inserir dados para sharding automatico
+fazer duas threads a fzr queries para um submiter, que vai fazer as sub-queries nas varias maquinas e vai juntar os resultados
+
+related work:
+descrever mysql, mysql cluster e hive
+descrever ticketing on the cloud (a ver se se usam sistemas na cloud (pagar))
+como funcionam os sistemas de virtualização da cloud (poder usar) (pesquisar por: cloud virtualization (software) pdf)
+-pequena historia (2 frases)
+-o porque de ter sido criado (o que faltava na altura para ter sido criado)
+-vantagens e desvantagens
+-particularidades (diferenças para os outros)
+-alguma explicação ao nível interno de como funciona
+-onde é mais aplicado e porque (que tipos de aplicações e sistemas o usam)
+
+poder simular datawarehouse: varias dbs, aumentar as inserções durante um tempo, diminuir enquanto se copiam os dados para outra base de dados para se poder fazer os calculos de repartição

@@ -11,8 +11,8 @@ CREATE TABLE IF NOT EXISTS `tms`.`tickets` (
   `ticket_id` INT NOT NULL AUTO_INCREMENT,
   `type` INT NOT NULL,
   `person` TEXT NOT NULL,
-  `sale_date` DATETIME NOT NULL,
-  `sale_store` INT NOT NULL,
+  `date` DATETIME NOT NULL,
+  `store` TEXT NOT NULL,
   `trips` INT NOT NULL,
   `comment` TEXT NOT NULL,
   PRIMARY KEY (`ticket_id`),
@@ -43,7 +43,7 @@ ENGINE = InnoDB;
 -- Table `tms`.`validations`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `tms`.`validations` (
-  `validation_id` INT NOT NULL,
+  `validation_id` INT NOT NULL AUTO_INCREMENT,
   `ticket_id` INT NOT NULL,
   `date` DATETIME NOT NULL,
   `location` TEXT NOT NULL,
