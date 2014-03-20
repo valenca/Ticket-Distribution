@@ -29,7 +29,7 @@ if True:
 		tot=20000000
 		for i in range(tot):
 			
-			bar(i,tot,msg="deposit")
+			bar(i,tot,msg="validation")
 
 			current_date = start_date + datetime.timedelta(seconds=randint(1,131200000))
 			query="INSERT INTO tms.validations (ticket_id,date,location,transport) VALUES ("
