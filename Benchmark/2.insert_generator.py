@@ -10,32 +10,21 @@ if True:
 	with open('Data/deposits.db','w') as f:
 		tot=5000000
 		for i in range(tot):
-			
-			bar(i,tot,msg="deposit")
-
-			current_date = start_date + datetime.timedelta(seconds=randint(1,131200000))
-			query="INSERT INTO tms.deposits (ticket_id,date,location,trips,value) VALUES ("
-
-			query+= str(randint(1,3000000))+",\'"
-			query+= str(current_date)+"\',"
-			query+= str(choice(['\'mc','\'st'])+str(randint(1,100)))+"\',"
 			t=int(round(gauss(8,4)))
-			query+= str(t)+","
-			query+= str(t*1.2)+");"
-			f.write(query+"\n")
+			bar(i,tot,msg="deposit")
+			current_date = start_date + datetime.timedelta(seconds=randint(1,131200000))
+			f.write("INSERT INTO tms.deposits (ticket_id,date,location,trips,value) VALUES (")
+			f.write(str(randint(1,3000000))+",\'"+str(current_date)+"\',")
+			f.write(str(choice(['\'mc','\'st'])+str(randint(1,100)))+"\',")
+			f.write(str(t)+","+str(t*1.2)+");\n")
 
 if True:
 	with open('Data/validations.db','w') as f:
 		tot=20000000
 		for i in range(tot):
-			
 			bar(i,tot,msg="validation")
-
 			current_date = start_date + datetime.timedelta(seconds=randint(1,131200000))
-			query="INSERT INTO tms.validations (ticket_id,date,location,transport) VALUES ("
-
-			query+= str(randint(1,3000000))+",\'"
-			query+= str(current_date)+"\',"
-			query+= str(choice(['\'trs','\'sws','\'bss'])+str(randint(1,100)))+"\',"
-			query+= str(choice(['\'tr','\'sw','\'bs'])+str(randint(1,100)))+"\')"
-			f.write(query+"\n")
+			f.write("INSERT INTO tms.validations (ticket_id,date,location,transport) VALUES (")
+			f.write(str(randint(1,3000000))+",\'"+str(current_date)+"\',")
+			f.write(str(choice(['\'str','\'ssw','\'sbs'])+str(randint(1,100)))+"\',")
+			f.write(str(choice(['\'tr','\'sw','\'bs'])+str(randint(1,100)))+"\');\n")

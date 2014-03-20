@@ -22,7 +22,7 @@ with open('Data/tickets.db','w') as f:
 	while current_date <= end_date:
 		balance = int(round(random.gauss(8,4)))
 		if balance < 0: balance = 0
-		f.write(str(num+1)+'|'+str(random.choice([0,1]))+'|')
+		f.write(str(num+1)+'|')
 		f.write(random.choice(firstnames)+' '+random.choice(firstnames)+' '+random.choice(lastnames)+' '+random.choice(lastnames)+'|')
 		f.write(str(current_date)+'|st'+str(random.randint(1,100))+'|'+str(balance)+'|')
 		f.write("".join([random.choice(letters) for i in range(250)])+"\n")
