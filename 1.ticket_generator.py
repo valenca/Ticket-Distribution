@@ -10,7 +10,7 @@ with open('lastnames','r') as f:
 firstnames = list(set(firstnames))
 lastnames = list(set(lastnames))
 
-with open('Data/tickets_data','w') as f:
+with open('Data/tickets_data.loc','w') as f:
 
 	start_date = datetime.datetime(2000,1,1,0,0,0)
 	end_date = datetime.datetime(2014,2,28,23,59,59)
