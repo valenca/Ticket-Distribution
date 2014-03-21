@@ -17,10 +17,10 @@ if True:
 			query="INSERT INTO tms.deposits (ticket_id,date,location,trips,value) VALUES ("
 
 			query+= str(randint(1,3000000))+",\'"
-			query+= str(current_date)+"\',"
-			query+= str(choice(['\'mc','\'st'])+str(randint(1,100)))+"\',"
-			t=int(round(gauss(8,4)))
-			query+= str(t)+","
+            query+= str(current_date)+"\',"
+            query+= str(choice(['\'mc','\'st'])+str(randint(1,100)))+"\',"
+            t=int(round(gauss(8,4)))
+            query+= str(t)+","
 			query+= str(t*1.2)+");"
 			f.write(query+"\n")
 
