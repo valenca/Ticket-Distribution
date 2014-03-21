@@ -1,5 +1,6 @@
 import datetime
 import random
+from util import bar
 from string import letters
 from util import bar
 random.seed('sgd')
