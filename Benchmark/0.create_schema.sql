@@ -9,7 +9,6 @@ USE `tms` ;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `tms`.`tickets` (
   `ticket_id` INT NOT NULL AUTO_INCREMENT,
-  `type` INT NOT NULL,
   `person` TEXT NOT NULL,
   `date` DATETIME NOT NULL,
   `store` TEXT NOT NULL,

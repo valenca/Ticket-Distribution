@@ -1,5 +1,6 @@
 from sys import stdout as out
 from time import sleep
+
 def bar(i,tot,msg='',length=40):
 	pcurr=length*(i)/tot
 	clean="\r"
@@ -18,4 +19,3 @@ if __name__ == "__main__":
 	for i in range(div):
 		bar(i,div,msg="")
 		sleep(0.05)
-

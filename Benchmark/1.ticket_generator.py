@@ -2,6 +2,8 @@ import datetime
 import random
 from util import bar
 from string import letters
+from util import bar
+random.seed('sgd')
 
 with open('firstnames','r') as f:
 	firstnames = [line[:-1] for line in f]
@@ -21,7 +23,7 @@ with open('Data/tickets.db','w') as f:
 	while current_date <= end_date:
 		balance = int(round(random.gauss(8,4)))
 		if balance < 0: balance = 0
-		f.write(str(num+1)+'|'+str(random.choice([0,1]))+'|')
+		f.write(str(num+1)+'|')
 		f.write(random.choice(firstnames)+' '+random.choice(firstnames)+' '+random.choice(lastnames)+' '+random.choice(lastnames)+'|')
 		f.write(str(current_date)+'|st'+str(random.randint(1,100))+'|'+str(balance)+'|')
 		f.write("".join([random.choice(letters) for i in range(250)])+"\n")
