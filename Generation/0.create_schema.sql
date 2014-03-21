@@ -8,32 +8,32 @@ USE `tms` ;
 -- Table `tms`.`tickets`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `tms`.`tickets` (
-  `ticket_id` INT NOT NULL AUTO_INCREMENT,
-  `person` TEXT NOT NULL,
-  `date` DATETIME NOT NULL,
-  `store` TEXT NOT NULL,
-  `trips` INT NOT NULL,
-  `comment` TEXT NOT NULL,
-  PRIMARY KEY (`ticket_id`),
-  UNIQUE INDEX `ticket_id_UNIQUE` (`ticket_id` ASC))
+  `t_id` INT NOT NULL AUTO_INCREMENT,
+  `t_type` TEXT NOT NULL,
+  `t_person` TEXT NOT NULL,
+  `t_date` DATETIME NOT NULL,
+  `t_store` TEXT NOT NULL,
+  `t_trips` INT NOT NULL,
+  PRIMARY KEY (`t_id`),
+  UNIQUE INDEX `t_id_UNIQUE` (`t_id` ASC))
 ENGINE = InnoDB;
 
 -- -----------------------------------------------------
 -- Table `tms`.`deposits`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `tms`.`deposits` (
-  `deposit_id` INT NOT NULL AUTO_INCREMENT,
-  `ticket_id` INT NOT NULL,
-  `date` DATETIME NOT NULL,
-  `location` TEXT NOT NULL,
-  `trips` INT NOT NULL,
-  `value` FLOAT NOT NULL,
-  PRIMARY KEY (`deposit_id`),
-  UNIQUE INDEX `idDeposits_UNIQUE` (`deposit_id` ASC),
-  INDEX `fk_Deposits_Tickets_idx` (`ticket_id` ASC),
-  CONSTRAINT `fk_Deposits_Tickets`
-    FOREIGN KEY (`ticket_id`)
-    REFERENCES `tms`.`tickets` (`ticket_id`)
+  `d_id` INT NOT NULL AUTO_INCREMENT,
+  `d_t_id` INT NOT NULL,
+  `d_date` DATETIME NOT NULL,
+  `d_location` TEXT NOT NULL,
+  `d_trips` INT NOT NULL,
+  `d_value` FLOAT NOT NULL,
+  PRIMARY KEY (`d_id`),
+  UNIQUE INDEX `d_id_UNIQUE` (`d_id` ASC),
+  INDEX `fk_deposits_tickets_idx` (`d_t_id` ASC),
+  CONSTRAINT `fk_deposits_tickets`
+    FOREIGN KEY (`d_t_id`)
+    REFERENCES `tms`.`tickets` (`t_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -42,16 +42,17 @@ ENGINE = InnoDB;
 -- Table `tms`.`validations`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `tms`.`validations` (
-  `validation_id` INT NOT NULL AUTO_INCREMENT,
-  `ticket_id` INT NOT NULL,
-  `date` DATETIME NOT NULL,
-  `location` TEXT NOT NULL,
-  `transport` TEXT NOT NULL,
-  PRIMARY KEY (`validation_id`),
-  INDEX `fk_Validations_Tickets1_idx` (`ticket_id` ASC),
-  CONSTRAINT `fk_Validations_Tickets1`
-    FOREIGN KEY (`ticket_id`)
-    REFERENCES `tms`.`tickets` (`ticket_id`)
+  `v_id` INT NOT NULL AUTO_INCREMENT,
+  `v_t_id` INT NOT NULL,
+  `v_date` DATETIME NOT NULL,
+  `v_location` TEXT NOT NULL,
+  `v_transport` TEXT NOT NULL,
+  `v_company` TEXT NOT NULL,
+  PRIMARY KEY (`v_id`),
+  INDEX `fk_validations_tickets_idx` (`v_t_id` ASC),
+  CONSTRAINT `fk_validations_tickets`
+    FOREIGN KEY (`v_t_id`)
+    REFERENCES `tms`.`tickets` (`t_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
