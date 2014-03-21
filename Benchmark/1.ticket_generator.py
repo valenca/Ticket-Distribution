@@ -11,6 +11,7 @@ with open('lastnames','r') as f:
 
 firstnames = list(set(firstnames))
 lastnames = list(set(lastnames))
+tickets = 10
 
 with open('Data/tickets.db','w') as f:
 
@@ -28,5 +29,5 @@ with open('Data/tickets.db','w') as f:
 		f.write("".join([random.choice(letters) for i in range(250)])+"\n")
 		current_date += datetime.timedelta(seconds=random.randint(1,290))
 		num+=1
-		bar(num,3000000)
-		if num == 3000000: break
+		bar(num,tickets)
+		if num == tickets: break
