@@ -3,6 +3,5 @@
 *.gen
 *.loc
 *.db
-*.mwb
-*.bak
 guideline
+info

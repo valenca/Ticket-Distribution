@@ -1,32 +1,40 @@
-from random import randint,choice,gauss,seed
-from sys import stdout as out
-from util import bar
-import datetime
-seed('sgd')
+from threading import Thread
+from datetime import datetime, timedelta
+from random import seed, randint, choice, gauss, random
+#from MySQLdb import connect
+#from time import time
+#from cPickle import dump
 
-start_date = datetime.datetime(2014,1,1,0,0,0)
-tickets = 10
+global v_queries
+v_queries = []
 
-if False:
-	with open('Data/deposits.db','w') as f:
-		tot=100
-		for i in range(tot):
-			t=int(round(gauss(8,4)))
-			current_date = start_date + datetime.timedelta(seconds=randint(1,86400))
-			f.write("INSERT INTO tms.deposits (ticket_id,date,location,trips,value) VALUES (")
-			f.write(str(randint(1,tickets))+",\'"+str(current_date)+"\',")
-			f.write(str(choice(['\'machine','\'store'])+str(randint(1,100)))+"\',")
-			f.write(str(t)+","+str(t*1.2)+");\n")
-			print "\r"+str(i),
+class CreateValidations(Thread):
 
-if True:
-	with open('Data/validations.db','w') as f:
-		tot=200
-		for i in range(tot):
-			t=choice(['train','subway','bus'])
-			current_date = start_date + datetime.timedelta(seconds=randint(1,86400))
-			f.write("INSERT INTO tms.validations (ticket_id,date,location,transport) VALUES (")
-			f.write(str(randint(1,tickets))+",\'"+str(current_date)+"\',")
-			f.write('\''+t[0]+'stop'+str(randint(1,100))+"\',")
-			f.write('\''+t+str(randint(1,100))+"\');\n")
-			print "\r"+str(i),
+	def __init__(self):
+		Thread.__init__(self)
+
+	def run(self):
+		date = datetime(2004,10,1,0,0,0)
+		for y in range(1):
+			string = 'INSERT INTO validations (v_t_id,v_date,v_location,v_transport,v_company) VALUES '
+			x = 50000
+			for b in range(x):
+
+				date += timedelta(seconds=choice([0,0,0,1]))
+				t_id = 0
+				while not 0 < t_id < 1000001:
+					t_id = int(round(gauss(5000000,2500000)))
+				transp = choice(['train','bus','bus','bus','bus','subway','subway','subway','subway','subway'])
+
+				string+= '('+str(t_id)+','
+				string+= '\''+str(date)+'\','
+				string+= '\''+transp+'_stop_'+str(randint(1,100))+'\','
+				string+= '\''+transp+'_'+str(randint(1,100))+'\','
+				string+= '\''+transp+'\')'
+				if b != x-1: string+= ','
+
+			string += ';'
+			v_queries.append(string)
+
+c_validations = [CreateValidations() for i in range(3)]
+[i.start() for i in c_validations]

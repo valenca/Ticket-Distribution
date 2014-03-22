@@ -1,6 +1,5 @@
 from datetime import datetime, timedelta
 from random import seed, randint, choice, gauss
-from string import letters
 
 seed('SGD')
 date = datetime(2000,1,1,0,0,0)
@@ -15,7 +14,7 @@ with open('tickets.db','w') as f:
 		string+= choice(['normal','normal','normal','premium'])+'|'
 		string+= choice(firstnames)+' '+choice(firstnames)+' '+choice(lastnames)+' '+choice(lastnames)+'|'
 		string+= str(date)+'|'
-		string+= 'store'+str(randint(1,100))+'|'
+		string+= 'store_'+str(randint(1,100))+'|'
 		string+= str(balance)+'\n'
 		f.write(string)
 		#print "\r"+str(i+1),
