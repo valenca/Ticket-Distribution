@@ -1,0 +1,1 @@
+load data local infile "Tickets/tickets.db" into table tms.tickets fields terminated by "|" lines terminated by "\n";
