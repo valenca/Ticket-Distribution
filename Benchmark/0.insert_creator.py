@@ -38,6 +38,6 @@ def create_val(v_id):
 
 if __name__ == '__main__':
 
-	validations = [Process(target=create_val, args=(i,)) for i in range(5)]
+	validations = [Process(target=create_val, args=(i+8,)) for i in range(2)]
 	[i.start() for i in validations]
 	[i.join() for i in validations]
