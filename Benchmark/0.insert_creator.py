@@ -4,22 +4,22 @@ from multiprocessing import Process
 import gzip
 
 # x - threads - 10
-# y - runs - 200
+# y - runs - 20
 # z - interval - [0,0,0,1]
 # b - block - 50000
-# x * y * b = 100.000.000
+# x * y * b = 10.000.000
 def create_val(v_id):
 	queries=[]
 	date = datetime(2004,10,1,0,0,0)
-	for y in range(200):
+	for y in range(20):
 		string = 'INSERT INTO validations (v_t_id,v_date,v_location,v_transport,v_company) VALUES '
 		x = 50000
 		for b in range(x):
 
 			date += timedelta(seconds=choice([0,0,0,1]))
 			t_id = 0
-			while not 0 < t_id < 1000001:
-				t_id = int(round(gauss(5000000,2500000)))
+			while not 0 < t_id < 100001:
+				t_id = int(round(gauss(50000,25000)))
 			transp = choice(['train','bus','bus','bus','bus','subway','subway','subway','subway','subway'])
 
 			string+= '('+str(t_id)+','
@@ -38,20 +38,20 @@ def create_val(v_id):
 
 
 # x - threads - 10
-# y - runs - 1.000.000
-# z - interval - [1,100]
-# x * y = 10.000.000
+# y - runs - 100.000
+# z - interval - [1,1000]
+# x * y = 1.000.000
 # y * z = 100.000.000
 def create_dep(d_id):
 	queries=[]
 	date = datetime(2004,9,1,0,0,0)
-	for y in range(1000000):
+	for y in range(100000):
 
-		date += timedelta(seconds=randint(1,100))
+		date += timedelta(seconds=randint(1,1000))
 		t_id = 0
-		while not 0<t_id<1000001:
-			t_id = int(round(gauss(5000000,2500000)))
-		trips = int(round(gauss(8,4)))
+		while not 0<t_id<100001:
+			t_id = int(round(gauss(50000,25000)))
+		trips = int(round(gauss(10,5)))
 		if trips < 1: trips = 1
 
 		string = 'INSERT INTO deposits (d_t_id,d_date,d_location,d_trips,d_value) VALUES ('
@@ -62,7 +62,7 @@ def create_dep(d_id):
 		string+= str(trips*1.2)+');'
 
 		queries.append(string)
-		if y%10000 == 0: print str(d_id),str(y)
+		if y%1000 == 0: print str(d_id),str(y)
 
 	with gzip.open('Deposits/dep_'+str(d_id)+'.gz.db', 'wb') as f:
 		[f.write(string+'\n') for string in queries]
@@ -74,6 +74,6 @@ if __name__ == '__main__':
 	#[i.start() for i in validations]
 	#[i.join() for i in validations]
 
-	deposits = [Process(target=create_dep, args=(i,)) for i in range(10)]
-	[i.start() for i in deposits]
-	[i.join() for i in deposits]
+	#deposits = [Process(target=create_dep, args=(i+10,)) for i in range(5)]
+	#[i.start() for i in deposits]
+	#[i.join() for i in deposits]
