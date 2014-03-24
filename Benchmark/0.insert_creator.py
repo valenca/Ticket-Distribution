@@ -74,6 +74,6 @@ if __name__ == '__main__':
 	#[i.start() for i in validations]
 	#[i.join() for i in validations]
 
-	#deposits = [Process(target=create_dep, args=(i+10,)) for i in range(5)]
-	#[i.start() for i in deposits]
-	#[i.join() for i in deposits]
+	deposits = [Process(target=create_dep, args=(i,)) for i in range(10)]
+	[i.start() for i in deposits]
+	[i.join() for i in deposits]

@@ -22,20 +22,22 @@ def dep(d_id):
 	db = MySQLdb.connect(host="localhost",user="root",passwd="password",db="tms")
 	cursor = db.cursor()
 	with gzip.open('Deposits/dep_'+str(d_id)+'.gz.db', 'rb') as f:
-		with open('Validations/time_'+v_id+'.loc','w') as g:
+		with open('Deposits/time_'+d_id+'.loc','w') as g:
 			for line in f:
 				i += 1
 				duration = time.time()
 				cursor.execute(line)
 				db.commit()
-				print time.time() - duration
+				g.write(str(time.time() - duration)+'\n')
+				if i % 1000 == 0:
+					print 'Dep_'+d_id+": "+str(i)
 				
 
-#validations = [Process(target=val, args=(str(i),)) for i in range(10)]
+validations = [Process(target=val, args=(str(i),)) for i in range(10)]
 #deposits = [Process(target=dep, args=(str(i),)) for i in range(10)]
 
-#[i.start() for i in validations]
+[i.start() for i in validations]
 #[i.start() for i in deposits]
 
-#[i.join() for i in validations]
+[i.join() for i in validations]
 #[i.join() for i in deposits]

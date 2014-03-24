@@ -24,7 +24,7 @@ INSERT INTO validations VALUES (3,3,'2005-01-01 7:30:00','subway_stop_15','subwa
 INSERT INTO validations VALUES (4,2,'2005-01-01 9:00:00','subway_stop_45','subway_5','subway');
 INSERT INTO validations VALUES (5,4,'2005-01-02 10:00:01','train_stop_20','train_60','train');
 INSERT INTO validations VALUES (6,3,'2005-01-01 8:00:00','bus_stop_25','bus_10','bus');
-INSERT INTO validations VALUES (7,4,'2005-01-01 14:00:00','bus_stop_78','bus_7','bus');
+INSERT INTO validations VALUES (7,4,'2005-01-02 14:00:00','bus_stop_78','bus_7','bus');
 INSERT INTO validations VALUES (8,2,'2005-01-01 11:00:00','bus_stop_50','bus_1','bus');
 INSERT INTO validations VALUES (9,1,'2005-01-03 6:00:00','subway_stop_17','subway_24','subway');
 INSERT INTO validations VALUES (10,3,'2005-01-01 9:00:00','bus_stop_35','bus_20','bus');
