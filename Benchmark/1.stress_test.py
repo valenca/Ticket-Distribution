@@ -4,6 +4,7 @@ import time
 import MySQLdb
 
 def val(v_id):
+	duration2 = time.time()
 	i = 0
 	db = MySQLdb.connect(host="localhost",user="root",passwd="password",db="tms")
 	cursor = db.cursor()
@@ -16,8 +17,10 @@ def val(v_id):
 				db.commit()
 				g.write(str(time.time() - duration)+'\n')
 				print 'Val_'+v_id+": "+str(i)
+			g.write(str(time.time() - duration2)+'\n')
 
 def dep(d_id):
+	duration2 = time.time()
 	i = 0
 	db = MySQLdb.connect(host="localhost",user="root",passwd="password",db="tms")
 	cursor = db.cursor()
@@ -31,13 +34,14 @@ def dep(d_id):
 				g.write(str(time.time() - duration)+'\n')
 				if i % 1000 == 0:
 					print 'Dep_'+d_id+": "+str(i)
+			g.write(str(time.time() - duration2)+'\n')
 				
 
 validations = [Process(target=val, args=(str(i),)) for i in range(10)]
 deposits = [Process(target=dep, args=(str(i),)) for i in range(10)]
 
-[i.start() for i in validations]
 [i.start() for i in deposits]
+[i.start() for i in validations]
 
-[i.join() for i in validations]
 [i.join() for i in deposits]
+[i.join() for i in validations]
