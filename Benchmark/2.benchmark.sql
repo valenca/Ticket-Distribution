@@ -222,17 +222,31 @@ ORDER BY
 -- DEPOSITS & VALIDATIONS
 -- -----------------------------------------------------
 
--- Todas as combinações entre os depósitos e validações por bilhete
+-- Número de validações por depósito por pessoa
 SELECT
-	DISTINCT
-	d_t_id AS 'Ticket',
-	d_location AS 'Deposit Location',
-	v_location AS 'Validation Location',
-	v_transport AS 'Validation Transport'
+	d_t_id AS 'Person',
+	ROUND(validation.total/deposit.total,2) AS 'Validations per Deposit'
 FROM
-	deposits JOIN validations
+	deposits,
+	(SELECT
+		d_t_id AS id,
+		count(*) AS total
+	FROM
+		deposits
+	GROUP BY
+		1
+	) AS deposit,
+	(SELECT
+		v_t_id AS id,
+		count(*) AS total
+	FROM
+		validations
+	GROUP BY
+		1
+	) AS validation
 WHERE
-	d_t_id = v_t_id
+	d_t_id = deposit.id AND
+	d_t_id = validation.id
 ORDER BY
 	1
 ;
