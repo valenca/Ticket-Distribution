@@ -1,0 +1,14 @@
+-- Número de bilhetes vendidos por ano e por tipo
+SELECT
+	YEAR(t_date) AS 'Year',
+	t_type AS 'Ticket Type',
+	COUNT(*) AS 'Number of Sales'
+FROM
+	tickets
+GROUP BY
+	1,
+	2
+ORDER BY
+	1,
+	2
+;
