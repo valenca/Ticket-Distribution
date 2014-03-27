@@ -32,7 +32,8 @@ def dep(d_id):
 				cursor.execute(line)
 				db.commit()
 				g.write(str(time.time() - duration)+'\n')
-				print 'Dep_'+d_id+": "+str(i)
+				if i % 5 == 0:
+					print 'Dep_'+d_id+": "+str(i)
 			g.write(str(time.time() - duration2)+'\n')
 				
 
@@ -40,6 +41,7 @@ validations = [Process(target=val, args=(str(i),)) for i in range(10)]
 deposits = [Process(target=dep, args=(str(i),)) for i in range(10)]
 
 [i.start() for i in validations]
+time.sleep(5)
 [i.start() for i in deposits]
 
 [i.join() for i in validations]

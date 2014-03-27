@@ -38,17 +38,17 @@ def create_val(v_id):
 
 
 # x - threads - 10
-# y - runs - 20
+# y - runs - 100
 # z - interval - [1,1000]
-# b - block - 5000
+# b - block - 1000
 # x * y * b = 1.000.000
 # y * z * b = 100.000.000
 def create_dep(d_id):
 	queries=[]
 	date = datetime(2004,9,1,0,0,0)
-	for y in range(20):
+	for y in range(100):
 		string = 'INSERT INTO deposits (d_t_id,d_date,d_location,d_trips,d_value) VALUES '
-		x = 5000
+		x = 1000
 		for b in range(x):
 
 			date += timedelta(seconds=randint(1,1000))
@@ -75,9 +75,9 @@ def create_dep(d_id):
 
 if __name__ == '__main__':
 
-	validations = [Process(target=create_val, args=(i,)) for i in range(10)]
-	[i.start() for i in validations]
-	[i.join() for i in validations]
+	#validations = [Process(target=create_val, args=(i,)) for i in range(10)]
+	#[i.start() for i in validations]
+	#[i.join() for i in validations]
 
 	deposits = [Process(target=create_dep, args=(i,)) for i in range(10)]
 	[i.start() for i in deposits]
