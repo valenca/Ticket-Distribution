@@ -1,0 +1,11 @@
+-- Quanto dinheiro fizeram por mês em depósitos
+SELECT
+	CONCAT(YEAR(d_date), ' - ', MONTHNAME(d_date)) AS 'Date',
+	ROUND(SUM(d_value),2) AS 'Gain in Deposits'
+FROM
+	deposits
+GROUP BY
+	1
+ORDER BY
+	1
+;
