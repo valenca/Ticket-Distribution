@@ -1,0 +1,12 @@
+-- Número de validações por dia
+SELECT
+	CONCAT(DATE(v_date), ' - ', DAYNAME(DATE(v_date))) as 'Day',
+	COUNT(*) AS 'Number of Validations'
+FROM
+	validations
+GROUP BY
+	1
+ORDER BY
+	1,
+	2
+;

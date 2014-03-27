@@ -1,0 +1,12 @@
+-- Listagem das lojas mais usadas na venda de bilhetes
+SELECT
+	t_store AS 'Store',
+	COUNT(*) AS 'Number of Sales'
+FROM
+	tickets
+GROUP BY
+	1
+ORDER BY
+	2 DESC,
+	1
+;

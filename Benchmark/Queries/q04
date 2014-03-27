@@ -1,0 +1,11 @@
+-- Quantos depósitos foram feitos por mês
+SELECT
+	CONCAT(YEAR(d_date), ' - ', MONTHNAME(d_date)) AS 'Date',
+	COUNT(*) AS 'Number of Deposits'
+FROM
+	deposits
+GROUP BY
+	1
+ORDER BY
+	1
+;

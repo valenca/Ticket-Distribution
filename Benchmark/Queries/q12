@@ -1,0 +1,45 @@
+-- Toda a informação relativa a uma pessoa
+SELECT
+	tickets.person AS 'Person',
+	tickets.type AS 'Ticket Type',
+	tickets.trips AS 'Trips Left',
+	deposits.total AS 'Total Deposits',
+	deposits.sum_trips AS 'Total Trips Deposited',
+	deposits.sum_value AS 'Total Money Deposited',
+	IFNULL(validations.total,0) AS 'Total Validations',
+	CONCAT(IFNULL(validations.bus,0.00), ' %') AS 'Bus Usage',
+	CONCAT(IFNULL(validations.subway,0.00), ' %') AS 'Subway Usage',
+	CONCAT(IFNULL(validations.train,0.00), ' %') AS 'Train Usage'
+FROM
+	(SELECT
+		t_id AS id,
+		t_person AS person,
+		t_type AS type,
+		t_trips AS trips
+	FROM
+		tickets
+	) AS tickets LEFT JOIN
+	(SELECT
+		d_t_id AS id,
+		COUNT(*) AS total,
+		SUM(d_trips) AS sum_trips,
+		ROUND(SUM(d_value),2) AS sum_value
+	FROM
+		deposits
+	GROUP BY
+		1
+	) AS deposits ON tickets.id = deposits.id LEFT JOIN
+	(SELECT 
+		v_t_id AS id, 
+		COUNT(*) AS total,
+		ROUND(AVG(v_company = 'bus')*100,2) AS bus,
+		ROUND(AVG(v_company = 'subway')*100,2) AS subway,
+		ROUND(AVG(v_company = 'train')*100,2) AS train
+	FROM 
+		validations
+	GROUP BY
+		1
+	) AS validations ON tickets.id = validations.id
+ORDER BY
+	tickets.id
+;

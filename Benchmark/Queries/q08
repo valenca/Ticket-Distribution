@@ -1,0 +1,12 @@
+-- Listagem dos transportes mais usados
+SELECT
+	v_transport AS 'Transport',
+	COUNT(*) AS 'Number of Validations'
+FROM
+	validations
+GROUP BY
+	1
+ORDER BY
+	2 DESC,
+	1
+;
