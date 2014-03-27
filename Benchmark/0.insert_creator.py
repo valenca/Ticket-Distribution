@@ -75,15 +75,9 @@ def create_dep(d_id):
 
 if __name__ == '__main__':
 
-<<<<<<< HEAD
 	validations = [Process(target=create_val, args=(i,)) for i in range(10)]
 	[i.start() for i in validations]
 	[i.join() for i in validations]
-=======
-	#validations = [Process(target=create_val, args=(i,)) for i in range(10)]
-	#[i.start() for i in validations]
-	#[i.join() for i in validations]
->>>>>>> f116657143e2c54c93c1ce1bf6a6f1cf92bb4665
 
 	deposits = [Process(target=create_dep, args=(i,)) for i in range(10)]
 	[i.start() for i in deposits]

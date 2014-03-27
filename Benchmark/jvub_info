@@ -1,27 +1,20 @@
 MariaDB [tms]> select table_name,data_length,index_length, AVG_ROW_LENGTH FROM information_schema.TABLES WHERE table_schema = "tms" AND table_name = "tickets";
 
-+------------+-------------+--------------+----------------+
-| table_name | data_length | index_length | AVG_ROW_LENGTH |
-+------------+-------------+--------------+----------------+
-| tickets    |     8929280 |      1589248 |             88 |
-+------------+-------------+--------------+----------------+
-1 row in set (0.00 sec)
-
-MariaDB [tms]> select table_name,data_length,index_length, AVG_ROW_LENGTH FROM information_schema.TABLES WHERE table_schema = "tms" AND table_name = "deposits";
-
-+------------+-------------+--------------+----------------+
-| table_name | data_length | index_length | AVG_ROW_LENGTH |
-+------------+-------------+--------------+----------------+
-| deposits   |       16384 |        32768 |              0 |
-+------------+-------------+--------------+----------------+
-1 row in set (0.00 sec)
-
-MariaDB [tms]> select table_name,data_length,index_length, AVG_ROW_LENGTH FROM information_schema.TABLES WHERE table_schema = "tms" AND table_name = "validations";
-
 +-------------+-------------+--------------+----------------+
 | table_name  | data_length | index_length | AVG_ROW_LENGTH |
 +-------------+-------------+--------------+----------------+
+| deposits    |       16384 |        32768 |              0 |
+| tickets     |     8929280 |      1589248 |             88 |
 | validations |       16384 |        16384 |              0 |
 +-------------+-------------+--------------+----------------+
 1 row in set (0.00 sec)
 
+
++-------------+----------------+--------------+-------------+
+| TABLE_NAME  | AVG_ROW_LENGTH | INDEX_LENGTH | DATA_LENGTH |
++-------------+----------------+--------------+-------------+
+| deposits    |            110 |     39911424 |    82427904 |
+| tickets     |             89 |      1589248 |     8929280 |
+| validations |             76 |    244072448 |   774897664 |
++-------------+----------------+--------------+-------------+
+3 rows in set (0.02 sec)
