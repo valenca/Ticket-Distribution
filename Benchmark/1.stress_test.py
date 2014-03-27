@@ -6,7 +6,7 @@ import MySQLdb
 def val(v_id):
 	duration2 = time.time()
 	i = 0
-	db = MySQLdb.connect(host="localhost",user="root",passwd="password",db="tms")
+	db = MySQLdb.connect(host="localhost",user="root",passwd="",db="tms")
 	cursor = db.cursor()
 	with gzip.open('Validations/val_'+v_id+'.gz.db', 'rb') as f:
 		with open('Validations/time_'+v_id+'.loc','w') as g:
@@ -22,7 +22,7 @@ def val(v_id):
 def dep(d_id):
 	duration2 = time.time()
 	i = 0
-	db = MySQLdb.connect(host="localhost",user="root",passwd="password",db="tms")
+	db = MySQLdb.connect(host="localhost",user="root",passwd="",db="tms")
 	cursor = db.cursor()
 	with gzip.open('Deposits/dep_'+str(d_id)+'.gz.db', 'rb') as f:
 		with open('Deposits/time_'+d_id+'.loc','w') as g:
