@@ -1,16 +1,18 @@
 import MySQLdb
 from datetime import datetime, timedelta
 import time
-
-db = MySQLdb.connect(host="localhost",user="root",passwd="password",db="tms")
+from progressbar import *
+db = MySQLdb.connect(host="localhost",user="root",passwd="",db="tms")
 cursor = db.cursor()
 
 transp={'bus':0,'subway':1,'train':2}
 trips = [0,0,0]
 
 with open('revenue.loc','w') as f:
+	pbar=ProgressBar().start()
 	for i in range(0,100000):
-		print '\r'+str(i+1),
+		pbar.update(i/1000)
+		#print '\r'+str(i+1),
 		temp = [0,0,0]
 		date = 0
 
@@ -44,3 +46,4 @@ with open('revenue.loc','w') as f:
 		f.write('   Bus Company: 0%\n')
 		f.write('Subway Company: 0%\n')
 		f.write(' Train Company: 0%\n')
+	pbar.finish()
