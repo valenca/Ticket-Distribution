@@ -247,6 +247,8 @@ FROM
 WHERE
 	d_t_id = deposit.id AND
 	d_t_id = validation.id
+GROUP BY
+	1
 ORDER BY
 	1
 ;
