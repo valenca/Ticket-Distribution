@@ -1,0 +1,30 @@
+-- Número de validações por depósito por pessoa
+SELECT
+	d_t_id AS 'Person',
+	ROUND(validation.total/deposit.total,2) AS 'Validations per Deposit'
+FROM
+	deposits,
+	(SELECT
+		d_t_id AS id,
+		count(*) AS total
+	FROM
+		deposits
+	GROUP BY
+		1
+	) AS deposit,
+	(SELECT
+		v_t_id AS id,
+		count(*) AS total
+	FROM
+		validations
+	GROUP BY
+		1
+	) AS validation
+WHERE
+	d_t_id = deposit.id AND
+	d_t_id = validation.id
+GROUP BY
+	1
+ORDER BY
+	1
+;
