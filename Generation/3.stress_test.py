@@ -4,8 +4,10 @@ import time
 import MySQLdb
 
 def val(v_id):
+
 	duration2 = time.time()
 	i = 0
+
 	db = MySQLdb.connect(host="localhost",user="root",passwd="",db="tms")
 	cursor = db.cursor()
 	with gzip.open('Validations/val_'+v_id+'.gz.db', 'rb') as f:
@@ -20,8 +22,10 @@ def val(v_id):
 			g.write(str(time.time() - duration2)+'\n')
 
 def dep(d_id):
+
 	duration2 = time.time()
 	i = 0
+
 	db = MySQLdb.connect(host="localhost",user="root",passwd="",db="tms")
 	cursor = db.cursor()
 	with gzip.open('Deposits/dep_'+str(d_id)+'.gz.db', 'rb') as f:
@@ -37,6 +41,7 @@ def dep(d_id):
 			g.write(str(time.time() - duration2)+'\n')
 				
 
+
 validations = [Process(target=val, args=(str(i),)) for i in range(10)]
 deposits = [Process(target=dep, args=(str(i),)) for i in range(10)]
 
@@ -46,3 +51,4 @@ time.sleep(5)
 
 [i.join() for i in validations]
 [i.join() for i in deposits]
+
