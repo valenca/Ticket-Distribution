@@ -43,7 +43,7 @@ FROM
 GROUP BY
 	1
 ORDER BY
-	1
+	d_date
 ;
 
 -- Quantos depósitos foram feitos por mês
@@ -55,7 +55,7 @@ FROM
 GROUP BY
 	1
 ORDER BY
-	1
+	d_date
 ;
 
 -- Listagem das lojas e máquinas mais usadas no depósito de viagens
@@ -106,7 +106,7 @@ FROM
 GROUP BY
 	1
 ORDER BY
-	1,
+	v_date,
 	2
 ;
 
@@ -215,7 +215,7 @@ GROUP BY
 ORDER BY
 	1,
 	2,
-	3
+	3 DESC
 ;
 
 -- -----------------------------------------------------
