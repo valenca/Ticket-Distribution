@@ -37,6 +37,9 @@ box3 = {'y': data3,
   	'jitter': 0.1,
   	'pointpos': -1.2}
 
+
+py.plot([box1,box2])
+
 py.plot([box1,box2,box3])
 
 

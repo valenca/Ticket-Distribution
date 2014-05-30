@@ -77,5 +77,8 @@ trace4 = {'x': indexes,
 trace5 = {'x': indexes,
   'y': data_v3}
 
+py.plot([trace0, trace1])
+py.plot([trace3, trace4])
+
 py.plot([trace0, trace1, trace2])
 py.plot([trace3, trace4, trace5])
